@@ -5,8 +5,8 @@ pull:
 	docker pull kibana:7.9.2
 
 run:
-	docker run --detach --name $(name) -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.9.2
-	docker run -d --name kibana --net somenetwork -p 5601:5601 kibana:tag
+	docker run -d --name $(name) -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+	docker run -d --link elasticsearch -p 5601:5601 kibana:7.9.2
 	
 start:
 	docker start $(name)
