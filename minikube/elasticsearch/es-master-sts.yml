@@ -35,14 +35,13 @@ spec:
           runAsUser: 1000
           capabilities:
             add:
-            - IPC_LOCK
             - SYS_RESOURCE
         image: docker.elastic.co/elasticsearch/elasticsearch:6.5.0
         env:
         - name: ES_JAVA_OPTS
           valueFrom:
               configMapKeyRef:
-                  name: es-config
+                  name: es
                   key: ES_JAVA_OPTS
         readinessProbe:
           httpGet:
@@ -64,9 +63,9 @@ spec:
       volumes:
         - name: elasticsearch-config
           configMap:
-            name: es-config
+            name: es
             items:
-              - key: elasticsearch.yml
+              - key: elasticsearch-yml
                 path: elasticsearch.yml
   volumeClaimTemplates:
   - metadata:

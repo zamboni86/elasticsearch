@@ -2,16 +2,22 @@ apiVersion: v1
 kind: ConfigMap
 data:
   elasticsearch-yml: |
-    bootstrap.memory_lock: true
-    cloud.kubernetes.service: myesdb
-    network.publish_host: _eth0_
+    bootstrap.memory_lock: false
     cluster.name: myesdb
-    network.host: "0.0.0.0"
-    discovery.zen.hosts_provider: kubernetes
     discovery.zen.minimum_master_nodes: 2
-    node.data: ${NODE_DATA}
-    node.master: ${NODE_MASTER}
+    http.compression: true
+    indices.fielddata.cache.size: 25%
+    network.bind_host: 0
+    network.publish_host: _eth0_
+    node.data: false
+    node.master: true
     node.name: ${HOSTNAME}
   ES_JAVA_OPTS: -Xms512m -Xmx512m
+  start-sh: |
+    #!/bin/ash
+    set -e
+    ulimit -n 1048576
+    ulimit -l unlimited
+    sysctl -w vm.max_map_count=262144
 metadata:
   name: es
