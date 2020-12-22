@@ -13,11 +13,16 @@ data:
     node.master: true
     node.name: ${HOSTNAME}
   ES_JAVA_OPTS: -Xms512m -Xmx512m
-  start-sh: |
-    #!/bin/ash
-    set -e
-    ulimit -n 1048576
-    ulimit -l unlimited
-    sysctl -w vm.max_map_count=262144
+  elasticsearch-data-yml: |
+    bootstrap.memory_lock: false
+    cluster.name: myesdb
+    discovery.zen.minimum_master_nodes: 2
+    discovery.zen.ping.unicast.hosts: es-master
+    http.compression: true
+    network.bind_host: 0
+    network.publish_host: _eth0_
+    node.data: true
+    node.master: false
+    node.name: ${HOSTNAME}
 metadata:
   name: es

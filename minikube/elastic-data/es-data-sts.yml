@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: esnode
+  name: es-data
 spec:
   serviceName: elasticsearch
   replicas: 3
@@ -10,11 +10,11 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: es-master
+      app: es-data
   template:
     metadata:
       labels:
-        app: es-master
+        app: es-data
     spec:
       securityContext:
         fsGroup: 1000
@@ -62,7 +62,7 @@ spec:
           configMap:
             name: es
             items:
-              - key: elasticsearch-yml
+              - key: elasticsearch-data-yml
                 path: elasticsearch.yml
   volumeClaimTemplates:
   - metadata:

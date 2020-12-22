@@ -12,3 +12,18 @@ spec:
   - name: transport
     port: 9300
     protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: es-discovery
+  labels:
+    component: elasticsearch
+    role: master
+spec:
+  selector:
+    app: es-master
+  ports:
+  - name: transport
+    port: 9200
+    protocol: TCP
