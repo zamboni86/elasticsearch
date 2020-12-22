@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  elasticsearch-yml: |
+    bootstrap.memory_lock: true
+    cloud.kubernetes.service: myesdb
+    network.publish_host: _eth0_
+    cluster.name: myesdb
+    network.host: "0.0.0.0"
+    discovery.zen.hosts_provider: kubernetes
+    discovery.zen.minimum_master_nodes: 2
+    node.data: ${NODE_DATA}
+    node.master: ${NODE_MASTER}
+    node.name: ${HOSTNAME}
+  ES_JAVA_OPTS: -Xms512m -Xmx512m
+metadata:
+  name: es
