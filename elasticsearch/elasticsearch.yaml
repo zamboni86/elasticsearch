@@ -1,0 +1,5 @@
+# https://github.com/elastic/helm-charts/tree/master/elasticsearch
+minimumMasterNodes: 2
+esMajorVersion: 6
+replicas: 3
+

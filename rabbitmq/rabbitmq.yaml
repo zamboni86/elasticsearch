@@ -1,2 +1,8 @@
-auth.username: example
-auth.password: example
+# https://github.com/bitnami/charts/tree/master/bitnami/rabbitmq/#installing-the-chart
+auth:
+  username:  example
+  password:  example
+
+image:
+  tag:    3.8.13-alpine
+  debug:  true
