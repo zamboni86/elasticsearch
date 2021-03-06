@@ -1,5 +1,8 @@
-install-elasticsearch:
-	helm install -f elasticsearch/elasticsearch.yaml elasticsearch elastic/elasticsearch
+TIMEOUT := 1200s
+PREFIX := elasticsearch
 
-delete-elasticsearch:
-	helm delete elasticsearch
+install:
+	helm upgrade --wait --timeout=$(TIMEOUT) --install --values primary.yaml $(PREFIX)-primary elastic/elasticsearch
+
+delete:
+	helm delete $(PREFIX)-primary

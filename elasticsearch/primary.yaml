@@ -1,0 +1,17 @@
+---
+
+clusterName: "multi"
+nodeGroup: "primary"
+
+minimumMasterNodes: 2
+replicas: 3
+
+esMajorVersion: 6
+
+
+roles:
+  master: "true"
+  ingest: "false"
+  data: "false"
+  ml: "false"
+  remote_cluster_client: "false"
