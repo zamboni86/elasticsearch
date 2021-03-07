@@ -1,17 +1,28 @@
 ---
 
-clusterName: "elasticsearch"
-nodeGroup: "primary"
+#clusterName: "elasticsearch"
+#nodeGroup: "primary"
 
-minimumMasterNodes: 2
-replicas: 3
+#masterService: "primary"
 
-esMajorVersion: 6
+minimumMasterNodes: 1
 
+replicas: 1
 
-roles:
-  master: "true"
-  ingest: "false"
-  data: "false"
-  ml: "false"
-  remote_cluster_client: "false"
+#esMajorVersion: 6
+
+antiAffinity: "soft"
+
+# Shrink default JVM heap.
+esJavaOpts: "-Xmx128m -Xms128m"
+
+clusterHealthCheckParams: "wait_for_status=yellow&timeout=1s"
+
+# Allocate smaller chunks of memory per pod.
+resources:
+  requests:
+    cpu: "100m"
+    memory: "512M"
+  limits:
+    cpu: "1000m"
+    memory: "512M"
