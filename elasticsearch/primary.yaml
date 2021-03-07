@@ -1,6 +1,6 @@
 ---
 
-clusterName: "multi"
+clusterName: "elasticsearch"
 nodeGroup: "primary"
 
 minimumMasterNodes: 2
