@@ -6,9 +6,11 @@ repo-add:
 
 install:
 	helm upgrade --install --values primary.yaml $(PREFIX)-primary elastic/elasticsearch
+	helm upgrade --install --values data.yaml $(PREFIX)-data elastic/elasticsearch
 
 delete:
 	helm delete $(PREFIX)-primary
+	helm delete $(PREFIX)-data
 
 delete-volumes:
 	kubectl delete pvc --all
