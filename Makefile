@@ -6,9 +6,3 @@ install-postgres:
 
 delete-postgres:
 	helm delete postgres
-
-install-rabbitmq:
-	helm install -f rabbitmq/rabbitmq.yaml rabbitmq bitnami/rabbitmq
-
-delete-rabbitmq:
-	helm delete rabbitmq

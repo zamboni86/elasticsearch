@@ -4,5 +4,5 @@ auth:
   password:  example
 
 image:
-  tag:    3.8.13-alpine
-  debug:  true
+  tag: 3.8.14-debian-10-r7
+  debug: true

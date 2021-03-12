@@ -1,4 +1,3 @@
-TIMEOUT := 1200s
 PREFIX := elasticsearch
 
 repo-add:
